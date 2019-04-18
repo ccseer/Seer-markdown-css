@@ -16,110 +16,6 @@ body {
     word-wrap: break-word;
 }
 
-body .pl-c {
-    color: #969896;
-}
-
-body .pl-c1,
-body .pl-s .pl-v {
-    color: #0086b3;
-}
-
-body .pl-e,
-body .pl-en {
-    color: #795da3;
-}
-
-body .pl-smi,
-body .pl-s .pl-s1 {
-    color: #333;
-}
-
-body .pl-ent {
-    color: #63a35c;
-}
-
-body .pl-k {
-    color: #a71d5d;
-}
-
-body .pl-s,
-body .pl-pds,
-body .pl-s .pl-pse .pl-s1,
-body .pl-sr,
-body .pl-sr .pl-cce,
-body .pl-sr .pl-sre,
-body .pl-sr .pl-sra {
-    color: #183691;
-}
-
-body .pl-v {
-    color: #ed6a43;
-}
-
-body .pl-id {
-    color: #b52a1d;
-}
-
-body .pl-ii {
-    color: #f8f8f8;
-    background-color: #b52a1d;
-}
-
-body .pl-sr .pl-cce {
-    font-weight: bold;
-    color: #63a35c;
-}
-
-body .pl-ml {
-    color: #693a17;
-}
-
-body .pl-mh,
-body .pl-mh .pl-en,
-body .pl-ms {
-    font-weight: bold;
-    color: #1d3e81;
-}
-
-body .pl-mq {
-    color: #008080;
-}
-
-body .pl-mi {
-    font-style: italic;
-    color: #333;
-}
-
-body .pl-mb {
-    font-weight: bold;
-    color: #333;
-}
-
-body .pl-md {
-    color: #bd2c00;
-    background-color: #ffecec;
-}
-
-body .pl-mi1 {
-    color: #55a532;
-    background-color: #eaffea;
-}
-
-body .pl-mdr {
-    font-weight: bold;
-    color: #795da3;
-}
-
-body .pl-mo {
-    color: #1d3e81;
-}
-
-body .octicon {
-    display: inline-block;
-    vertical-align: text-top;
-    fill: currentColor;
-}
 
 body a {
     background-color: transparent;
@@ -430,17 +326,6 @@ body h6 {
     line-height: 1.25;
 }
 
-body h1 .octicon-link,
-body h2 .octicon-link,
-body h3 .octicon-link,
-body h4 .octicon-link,
-body h5 .octicon-link,
-body h6 .octicon-link {
-    color: #000;
-    vertical-align: middle;
-    visibility: hidden;
-}
-
 body h1:hover .anchor,
 body h2:hover .anchor,
 body h3:hover .anchor,
@@ -553,9 +438,10 @@ body table tr:nth-child(2n) {
 }
 
 body img {
+    border-style: none;
+    background-color: #fff;
     max-width: 100%;
     box-sizing: content-box;
-    background-color: #fff;
 }
 
 body code {
@@ -588,16 +474,6 @@ body pre>code {
     border: 0;
 }
 
-body .highlight {
-    margin-bottom: 16px;
-}
-
-body .highlight pre {
-    margin-bottom: 0;
-    word-break: normal;
-}
-
-body .highlight pre,
 body pre {
     padding: 16px;
     overflow: auto;
@@ -622,39 +498,6 @@ body pre code {
 body pre code::before,
 body pre code::after {
     content: normal;
-}
-
-body .pl-0 {
-    padding-left: 0 !important;
-}
-
-body .pl-1 {
-    padding-left: 3px !important;
-}
-
-body .pl-2 {
-    padding-left: 6px !important;
-}
-
-body .pl-3 {
-    padding-left: 12px !important;
-}
-
-body .pl-4 {
-    padding-left: 24px !important;
-}
-
-body .pl-5 {
-    padding-left: 36px !important;
-}
-
-body .pl-6 {
-    padding-left: 48px !important;
-}
-
-body .full-commit .btn-outline:not(:disabled):hover {
-    color: #4078c0;
-    border: 1px solid #4078c0;
 }
 
 body kbd {

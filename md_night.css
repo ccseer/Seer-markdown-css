@@ -1,340 +1,322 @@
+/*
+https://github.com/sindresorhus/github-markdown-css
+*/
 html {
     font-size: 16px;
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    /* hide horizontal scrollbar */
-    overflow-x: hidden;
+    padding: 10%;
 }
 
 
 body {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
     color: #aab4be;
     background: #1e1e1e;
-    line-height: 22px;
-    padding: 10%;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
 }
 
-body>*:first-child {
-    margin-top: 1rem !important;
-}
 
-body>*:last-child {
-    margin-bottom: 1rem !important;
-}
-
-/* Headers */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 600;
-    color: #E06C75;
-    border-color: #3E4451;
-}
-
-h1 {
-    padding-bottom: .3em;
-    line-height: 1.2;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-color: hsla(0, 0%, 100%, .18);
-}
-
-h2 {
-    font-size: 1.5rem;
-    padding-bottom: 0.25rem;
-}
-
-h3 {
-    font-size: 1.375rem;
-}
-
-h4 {
-    font-size: 1.25rem;
-}
-
-h5 {
-    font-size: 1.125rem;
-}
-
-h6 {
-    font-size: 1rem;
-}
-
-/* Paragraph */
-
-p {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-}
-
-/* Links */
-
-a {
-    text-decoration: none;
+body a {
     background-color: transparent;
-    color: #61AFEF;
+    -webkit-text-decoration-skip: objects;
 }
 
-a:active,
-a:hover {
+body a:active,
+body a:hover {
     outline-width: 0;
-    text-decoration: underline
 }
 
-a:not([href]) {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* Bold */
-b,
-strong {
+body strong {
     font-weight: inherit;
-}
-
-b,
-strong {
-    font-weight: bolder;
-}
-
-b,
-strong {
-    font-weight: 600;
-}
-
-b,
-strong {
     color: #D19A66;
 }
 
-/* em Italic */
-em {
+body strong {
+    font-weight: bolder;
+}
+
+body em {
     color: #C678DD;
 }
 
-/* Blockquote */
+body h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
 
-blockquote {
-    margin: 0 7px 0 5px;
-    padding: 0 16px 0 10px;
-    border-left: 5px solid #0288d1;
-    color: #5C6370;
-    font-style: italic;
+body img {
+    border-style: none;
+}
+
+body svg:not(:root) {
+    overflow: hidden;
+}
+
+body code,
+body kbd,
+body pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+
+body hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+body input {
+    font: inherit;
+    margin: 0;
+}
+
+body input {
+    overflow: visible;
+}
+
+body button:-moz-focusring,
+body [type="button"]:-moz-focusring,
+body [type="reset"]:-moz-focusring,
+body [type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+body [type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+body input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+body a {
+    color: #61AFEF;
+    text-decoration: none;
+}
+
+body a:hover,
+body a:active {
+    text-decoration: underline;
+}
+
+body strong {
+    font-weight: 600;
+}
+
+body hr {
+    height: 0;
+    margin: 15px 0;
+    overflow: hidden;
     background: transparent;
+    border: 0;
+    border-bottom: 2px solid hsla(0, 0%, 100%, .18);
 }
 
-blockquote> :first-child {
+body hr::before {
+    display: table;
+    content: "";
+}
+
+body hr::after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+body table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+body td,
+body th {
+    padding: 0;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
     margin-top: 0;
-}
-
-blockquote> :last-child {
     margin-bottom: 0;
 }
 
-/* Lists */
+body h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
 
-ul,
-ol {
+body h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+body h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+body h4 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+body h5 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+body h6 {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+body p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+body blockquote {
+    margin: 0;
+}
+
+body ul,
+body ol {
     padding-left: 0;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-ol ol,
-ul ol {
+body ol ol,
+body ul ol {
     list-style-type: lower-roman;
 }
 
-ul ul ol,
-ul ol ol,
-ol ul ol,
-ol ol ol {
+body ul ul ol,
+body ul ol ol,
+body ol ul ol,
+body ol ol ol {
     list-style-type: lower-alpha;
 }
 
-ul,
-ol {
-    padding-left: 2em;
-}
-
-ul ul,
-ul ol,
-ol ol,
-ol ul {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-li {
-    word-wrap: break-all;
-}
-
-li>p {
-    margin-top: 16px;
-}
-
-li+li {
-    margin-top: 0.25em;
-}
-
-/* Definition List */
-dl {
-    padding: 0;
-}
-
-dl dt {
-    padding: 0;
-    margin-top: 16px;
-    font-size: 1em;
-    font-style: italic;
-    font-weight: 600;
-}
-
-dl dd {
-    padding: 0 16px;
-    margin-bottom: 16px;
-}
-
-dd {
+body dd {
     margin-left: 0;
 }
 
-/* Table */
-table {
-    border-collapse: collapse
-}
-
-table>thead>tr>th {
-    text-align: left;
-    border-bottom: 1px solid;
-    border-color: hsla(0, 0%, 100%, .69);
-}
-
-table>tbody>tr>td,
-table>tbody>tr>th,
-table>thead>tr>td,
-table>thead>tr>th {
-    padding: 5px 10px
-}
-
-table>tbody>tr+tr>td {
-    border-top: 1px solid;
-    border-color: hsla(0, 0%, 100%, .18);
-}
-
-/* Images */
-
-img {
-    border-style: none;
-    background-color: #fff;
-    max-width: 100%;
-    max-height: 100%
-}
-
-img[align=right] {
-    padding-left: 20px;
-}
-
-img[align=left] {
-    padding-right: 20px;
-}
-
-/* Pre Code */
-.emoji {
-    height: 1.4em;
-}
-
-pre,
-code {
-    font-family: "Ofirator Nerd Font", "Noto Color Emoji", Consolas,
-        "Liberation Mono", Menlo, Courier, monospace;
-    color: #ABB2BF;
-}
-
-pre {
-    margin-top: 0;
-    margin-bottom: 0;
-    word-wrap: normal;
-    padding: 16px;
-    line-height: 1.45;
-    background-color: #2c313a;
-    border-radius: 3px;
-}
-
-code {
+body code {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 14px;
     line-height: 19px;
     padding: 0.2em 0.4em;
     margin: 0;
     border-radius: 3px;
     color: #abb2bf;
-    background-color: hsla(0, 0%, 4%, .4);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-code>div {
-    padding: 16px;
-    border-radius: 3px;
-    overflow: auto
+body pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-pre>code {
-    padding: 0;
-    margin: 0;
-    word-break: normal;
-    white-space: pre;
-    border: 0;
+body .octicon {
+    vertical-align: text-bottom;
 }
 
-pre code {
-    display: inline;
-    max-width: auto;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    line-height: inherit;
-    word-wrap: normal;
-    background-color: transparent;
-    border: 0;
+body input {
+    -webkit-font-feature-settings: "liga"0;
+    font-feature-settings: "liga"0;
 }
 
-/* for inline code */
-/*
-:not(pre):not(.hljs)>code {
-    color: #C9AE75;
-    font-size: inherit;
-} */
-
-/* hr */
-
-hr {
-    margin: 24px 0;
-    height: 2px;
-    background: transparent;
-    border: 0;
-    border-bottom: 2px solid hsla(0, 0%, 100%, .18);
+body .form-select::-ms-expand {
+    opacity: 0;
 }
 
-/* ????????? */
-p,
-blockquote,
-ul,
-ol,
-dl,
-table,
-pre {
+body::before {
+    display: table;
+    content: "";
+}
+
+body::after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+body>*:first-child {
+    margin-top: 0 !important;
+}
+
+body>*:last-child {
+    margin-bottom: 0 !important;
+}
+
+body a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+}
+
+body .anchor {
+    float: left;
+    padding-right: 4px;
+    margin-left: -20px;
+    line-height: 1;
+}
+
+body .anchor:focus {
+    outline: none;
+}
+
+body p,
+body blockquote,
+body ul,
+body ol,
+body dl,
+body table,
+body pre {
     margin-top: 0;
     margin-bottom: 16px;
 }
 
-/* Keyboard */
-
-kbd {
-    font-family: monospace, monospace;
+body hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: hsla(0, 0%, 100%, .18);
+    border: 0;
 }
 
-kbd {
+body blockquote {
+    padding: 0 1em;
+    background: transparent;
+    font-style: italic;
+    color: #5C6370;
+    border-left: 0.25em solid #0288d1;
+}
+
+body blockquote> :first-child {
+    margin-top: 0;
+}
+
+body blockquote> :last-child {
+    margin-bottom: 0;
+}
+
+body kbd {
+    font-family: monospace, monospace;
     display: inline-block;
     padding: 3px 5px;
     font-size: 11px;
@@ -348,55 +330,236 @@ kbd {
     box-shadow: inset 0 -1px 0 #959da5;
 }
 
-kbd {
-    display: inline-block;
-    padding: 3px 5px;
-    font: 11px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-        monospace;
-    line-height: 10px;
-    color: #444d56;
-    vertical-align: middle;
-    background-color: #fafbfc;
-    border: solid 1px #d1d5da;
-    border-bottom-color: #c6cbd1;
-    border-radius: 3px;
-    box-shadow: inset 0 -1px 0 #c6cbd1;
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #E06C75;
+    border-color: #3E4451;
 }
 
-/* Task List */
+body h1:hover .anchor,
+body h2:hover .anchor,
+body h3:hover .anchor,
+body h4:hover .anchor,
+body h5:hover .anchor,
+body h6:hover .anchor {
+    text-decoration: none;
+}
 
-input[type="checkbox"] {
-    color: #e1e1e1;
-    background: transparent;
-    border: 1px solid red;
-    width: 1rem;
-    height: 1rem;
-    box-sizing: border-box;
+body h1:hover .anchor .octicon-link,
+body h2:hover .anchor .octicon-link,
+body h3:hover .anchor .octicon-link,
+body h4:hover .anchor .octicon-link,
+body h5:hover .anchor .octicon-link,
+body h6:hover .anchor .octicon-link {
+    visibility: visible;
+}
+
+body h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .18);
+}
+
+body h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+}
+
+body h3 {
+    font-size: 1.25em;
+}
+
+body h4 {
+    font-size: 1em;
+}
+
+body h5 {
+    font-size: 0.875em;
+}
+
+body h6 {
+    font-size: 0.85em;
+}
+
+body ul,
+body ol {
+    padding-left: 2em;
+}
+
+body ul ul,
+body ul ol,
+body ol ol,
+body ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+body li>p {
+    margin-top: 16px;
+}
+
+body li+li {
+    margin-top: 0.25em;
+}
+
+body dl {
     padding: 0;
 }
 
-input[type="checkbox"]:disabled {
-    background: rgba(10, 10, 10, 0.99);
-
-    position: relative;
-    z-index: 1;
+body dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: bold;
 }
 
-input[type="checkbox"]:checked {
-    background: rgba(10, 10, 10, 0.99);
-
-    position: relative;
-    z-index: 1;
+body dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
 }
 
-.task-list-item {
+body table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    word-break: normal;
+    word-break: keep-all;
+    border-collapse: collapse;
+}
+
+body table>thead>tr>th {
+    text-align: left;
+    border-bottom: 1px solid;
+    border-color: hsla(0, 0%, 100%, .69);
+}
+
+body table>tbody>tr>td,
+table>tbody>tr>th,
+table>thead>tr>td,
+table>thead>tr>th {
+    padding: 5px 10px
+}
+
+body table>tbody>tr+tr>td {
+    border-top: 1px solid;
+    border-color: hsla(0, 0%, 100%, .18);
+}
+
+body table tr:nth-child(2n) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+body img {
+    border-style: none;
+    background-color: #fff;
+    max-width: 100%;
+    box-sizing: content-box;
+}
+
+body code {
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 3px;
+    color: #ABB2BF;
+}
+
+body code::before,
+body code::after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+}
+
+body pre {
+    word-wrap: normal;
+}
+
+body pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background-color: hsla(0, 0%, 4%, .4);
+    border: 0;
+    color: #abb2bf;
+}
+
+body pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #2c313a;
+    border-radius: 3px;
+    color: #ABB2BF;
+}
+
+body pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+}
+
+body pre code::before,
+body pre code::after {
+    content: normal;
+}
+
+body kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    line-height: 10px;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fcfcfc;
+    border: solid 1px #ccc;
+    border-bottom-color: #bbb;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #bbb;
+}
+
+body :checked+.radio-label {
+    position: relative;
+    z-index: 1;
+    border-color: #4078c0;
+}
+
+body .task-list-item {
     list-style-type: none;
 }
 
-.task-list-item input {
+body .task-list-item+.task-list-item {
+    margin-top: 3px;
+}
+
+body .task-list-item input {
     margin: 0 0.2em 0.25em -1.6em;
     vertical-align: middle;
 }
+
+body hr {
+    border-bottom: 2px solid hsla(0, 0%, 100%, .18);
+}
+
 
 /* scrollbar */
 ::-webkit-scrollbar {
