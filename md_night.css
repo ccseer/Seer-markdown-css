@@ -1413,12 +1413,10 @@ body code {
 
 body pre {
   color: var(--seer-code-text);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24px),
-    linear-gradient(180deg, #16202d, #101720);
-  border: 1px solid rgba(80, 111, 148, 0.42);
-  border-radius: 16px;
-  box-shadow: var(--seer-shadow);
+  background: var(--seer-code-bg);
+  border: 1px solid var(--seer-border);
+  border-radius: 6px;
+  box-shadow: none;
 }
 
 body pre code {

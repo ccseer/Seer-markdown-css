@@ -1271,12 +1271,10 @@ body code {
 
 body pre {
   color: var(--seer-code-text);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent 24px),
-    linear-gradient(180deg, #eff5ff, #e8f2ff);
-  border: 1px solid rgba(129, 167, 214, 0.38);
-  border-radius: 16px;
-  box-shadow: var(--seer-shadow);
+  background: var(--seer-code-bg);
+  border: 1px solid var(--seer-border);
+  border-radius: 6px;
+  box-shadow: none;
 }
 
 body pre code {

@@ -1,0 +1,263 @@
+/* Seer Semantic Theme Tokens */
+:root[data-darkmode="light"] {
+    --seer-accent: #016BA5;
+    --seer-text-primary: var(--seer-text, #212121);
+    --seer-text-secondary: var(--seer-text-soft, #666666);
+    --seer-bg-base: color-mix(in srgb, var(--seer-window-bg, #ffffff) 85%, transparent);
+    --seer-separator: var(--seer-border, rgba(0, 0, 0, 0.08));
+    --seer-hover-wash: color-mix(in srgb, var(--seer-text-primary) 6%, transparent);
+    --seer-sb-thumb: var(--seer-thumb, rgba(0, 0, 0, 0.15));
+    --seer-sb-thumb-hover: var(--seer-thumb-hover, rgba(0, 0, 0, 0.25));
+    --seer-sb-thumb-active: var(--seer-thumb-active, rgba(0, 0, 0, 0.35));
+    --seer-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+:root[data-darkmode="dark"] {
+    --seer-accent: #2aa8ef;
+    --seer-text-primary: var(--seer-text, #eceff1);
+    --seer-text-secondary: var(--seer-text-soft, #9e9e9e);
+    --seer-bg-base: color-mix(in srgb, var(--seer-window-bg, #121212) 85%, transparent);
+    --seer-separator: var(--seer-border, rgba(255, 255, 255, 0.08));
+    --seer-hover-wash: color-mix(in srgb, var(--seer-text-primary) 6%, transparent);
+    --seer-sb-thumb: var(--seer-thumb, rgba(255, 255, 255, 0.15));
+    --seer-sb-thumb-hover: var(--seer-thumb-hover, rgba(255, 255, 255, 0.25));
+    --seer-sb-thumb-active: var(--seer-thumb-active, rgba(255, 255, 255, 0.35));
+    --seer-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Document Body Links Override */
+.markdown-body a,
+.heti a {
+    color: var(--seer-accent);
+}
+
+/* Custom Scrollbars for the preview window */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--seer-sb-thumb);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--seer-sb-thumb-hover);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--seer-sb-thumb-active);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* Copy Code Button Styles */
+pre {
+    position: relative;
+}
+.copy-code-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--seer-text-secondary);
+    z-index: 10;
+}
+pre:hover .copy-code-btn,
+pre:focus-within .copy-code-btn,
+.mermaid-block:hover .copy-code-btn,
+.mermaid-block:focus-within .copy-code-btn {
+    opacity: 0.85;
+}
+.copy-code-btn:hover {
+    background: var(--seer-hover-wash);
+    border-color: var(--seer-separator);
+    color: var(--seer-text-primary);
+    opacity: 0.85 !important;
+}
+.copy-code-btn:focus-visible {
+    outline: 2px solid var(--seer-accent);
+    outline-offset: -2px;
+    opacity: 0.85 !important;
+}
+.copy-code-btn svg {
+    width: 14px;
+    height: 14px;
+}
+.copy-code-btn.copied {
+    color: var(--seer-accent);
+    background: var(--seer-hover-wash);
+    border-color: var(--seer-separator);
+}
+
+/* TOC Styles */
+#toc-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 280px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: var(--seer-bg-base);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--seer-separator);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: var(--seer-shadow);
+    z-index: 1000;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#toc-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media print {
+    #toc-container {
+        display: none !important;
+    }
+}
+
+#toc-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#toc-container::-webkit-scrollbar-thumb {
+    background: var(--seer-sb-thumb);
+    border-radius: 3px;
+}
+
+#toc-container::-webkit-scrollbar-thumb:hover {
+    background: var(--seer-sb-thumb-hover);
+}
+
+#toc-container::-webkit-scrollbar-thumb:active {
+    background: var(--seer-sb-thumb-active);
+}
+
+#toc-title {
+    font-weight: 600;
+    margin: 0;
+    padding: 8px 0 8px 24px;
+    color: var(--seer-text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    border-bottom: 1px solid var(--seer-separator);
+}
+
+#toc-title::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--seer-text-secondary);
+    transition: transform 0.2s;
+}
+
+#toc-title.collapsed::before {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+#toc-title.collapsed {
+    border-bottom: none;
+}
+
+#toc-content {
+    padding-top: 12px;
+    transition: opacity 0.2s;
+}
+
+#toc-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#toc-content li {
+    margin: 4px 0;
+}
+
+#toc-content ul ul {
+    padding-left: 16px;
+}
+
+#toc-content a {
+    color: var(--seer-text-secondary);
+    text-decoration: none;
+    display: inline-block;
+    padding: 3px 0 3px 10px;
+    border-left: 2px solid transparent;
+    transition: color 0.15s ease, border-left-color 0.15s ease;
+}
+
+#toc-content a:hover {
+    color: var(--seer-text-primary);
+    text-decoration: none;
+}
+
+#toc-content a.active {
+    color: var(--seer-text-primary);
+    font-weight: 500;
+    border-left-color: var(--seer-accent);
+}
+
+/* Mermaid Blocks */
+.mermaid-block {
+    margin: 1em 0;
+    overflow-x: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mermaid-block.loaded {
+    opacity: 1;
+}
+
+.mermaid-block svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.mermaid-block.error {
+    opacity: 1 !important;
+    font-family: monospace;
+    white-space: pre-wrap;
+    padding: 12px;
+    background: var(--seer-hover-wash);
+    border: 1px solid var(--seer-separator);
+    border-radius: 4px;
+    color: var(--seer-text-primary);
+    font-size: 0.9em;
+}

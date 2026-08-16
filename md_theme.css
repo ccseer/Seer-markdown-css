@@ -1,0 +1,60 @@
+body {
+    color: var(--md-theme-text) !important;
+    background-color: var(--md-theme-bg) !important;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+    color: var(--md-theme-heading) !important;
+    border-color: var(--md-theme-border) !important;
+}
+
+body a,
+body a:visited {
+    color: var(--md-theme-accent) !important;
+}
+
+body hr {
+    background-color: var(--md-theme-border) !important;
+    border-color: var(--md-theme-border) !important;
+}
+
+body blockquote {
+    color: var(--md-theme-text) !important;
+    background-color: var(--md-theme-quote-bg) !important;
+    border-left-color: var(--md-theme-quote-border) !important;
+}
+
+body pre,
+body code {
+    background-color: var(--md-theme-code-bg) !important;
+    color: var(--md-theme-code-text) !important;
+}
+
+body pre {
+    border-color: var(--md-theme-border) !important;
+}
+
+body table tr,
+body table td,
+body table th {
+    border-color: var(--md-theme-border) !important;
+}
+
+body table tr {
+    background-color: var(--md-theme-bg) !important;
+}
+
+body table tr:nth-child(2n),
+body table th {
+    background-color: var(--md-theme-quote-bg) !important;
+}
+
+body mark {
+    background-color: var(--md-theme-quote-bg) !important;
+    color: var(--md-theme-text) !important;
+}
