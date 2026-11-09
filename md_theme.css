@@ -1,3 +1,7 @@
+html {
+    background-color: var(--md-theme-bg) !important;
+}
+
 body {
     color: var(--md-theme-text) !important;
     background-color: var(--md-theme-bg) !important;
