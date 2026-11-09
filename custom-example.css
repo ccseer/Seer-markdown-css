@@ -1,0 +1,677 @@
+/* ==========================================================================
+   Seer Markdown Custom Stylesheet Template / Example
+   File: custom-example.css
+
+   This stylesheet serves as both a production-ready theme and an extensible
+   reference template for customizing Seer's Markdown preview.
+
+   HOW TO USE:
+   1. Copy or edit this file to suit your preferences.
+   2. Open Seer Settings > Type and select the Web viewer.
+   3. Set "Markdown theme:" to "Custom".
+   4. Enter the full CSS file path in the "Custom CSS path:" field.
+   5. Apply the settings, then reopen the Markdown file.
+
+   CUSTOMIZATION DESIGN:
+   - All customizable variables (fonts, sizes, colors, spacing) are declared
+     in Section 1 below. You rarely need to touch the CSS rules in Section 2+.
+   - Light and Dark modes are handled automatically via data-darkmode.
+   - Multilingual: Clean Latin baseline with documented extension points for
+     any language/script (CJK, Cyrillic, Arabic, Indic, etc.).
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DESIGN TOKENS (USER CONFIGURATION)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1.1 & 1.3 UNIVERSAL TOKENS & LIGHT MODE PALETTE
+   Declared under :root and :root[data-darkmode="light"] to ensure custom
+   tokens and chrome aliases reliably win against downstream helper styles.
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-darkmode="light"] {
+    color-scheme: light;
+
+    /* ----------------------------------------------------------------------
+       Typography Stacks (Universal & Cross-Platform)
+       ----------------------------------------------------------------------
+       Multilingual extension points:
+       - CJK (Chinese / Japanese / Korean):
+           * Serif: Prepend "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC",
+                    "SimSun", "Yu Mincho", "Batang"
+           * Sans:  Prepend "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei",
+                    "Meiryo", "Malgun Gothic"
+       - Arabic / Persian / Urdu:
+           * Prepend "Amiri", "Noto Naskh Arabic", "Segoe UI", "Tahoma"
+       - Cyrillic:
+           * Charter, Georgia, Segoe UI, Roboto have native Cyrillic glyphs.
+       - Indic / Devanagari:
+           * Prepend "Noto Serif Devanagari", "Mangal", "Nirmala UI"
+       ---------------------------------------------------------------------- */
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "Liberation Mono", monospace;
+
+    /* Active Font Roles (Switch --font-body to var(--font-sans) for clean tech docs) */
+    --font-body: var(--font-serif);
+    --font-heading: var(--font-serif);
+    --font-code: var(--font-mono);
+
+    /* Font Sizes (Scale) */
+    --font-size-root: 16px;
+    --font-size-base: 1.0625rem;  /* 17px body reading size */
+    --font-size-h1: 2.1rem;
+    --font-size-h2: 1.6rem;
+    --font-size-h3: 1.28rem;
+    --font-size-h4: 1.1rem;
+    --font-size-h5: 1.0rem;
+    --font-size-h6: 0.9rem;
+    --font-size-code: 0.88em;
+    --font-size-small: 0.875rem;
+
+    /* Line Heights & Letter Spacing */
+    --line-height-body: 1.78;
+    --line-height-heading: 1.35;
+    --line-height-code: 1.6;
+    --letter-spacing-body: 0.01em;
+
+    /* Typographic Styles & Multilingual CJK Notes
+       Chinese, Japanese, and Korean (CJK) fonts lack true cursive italics.
+       When font-style: italic is applied, browsers synthesize an oblique slant
+       that distorts CJK strokes. If reading predominantly CJK
+       documents, change --font-style-quote and --font-style-caption to 'normal'. */
+    --font-style-quote: italic;
+    --font-style-caption: italic;
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Layout & Geometry */
+    /* Horizontal metrics are not themable: Seer's Reading width setting and
+       md_chrome.css own the article width and its side padding. */
+    --content-padding-y: clamp(24px, 5vh, 56px);
+
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+
+    /* Palette (Warm Alabaster / Editorial Paper) */
+    --bg-canvas: #FAF8F5;          /* Main document backdrop */
+    --bg-surface: #FFFFFF;         /* Cards, tables, elevated containers */
+    --bg-subtle: #F2ECE3;          /* Inset blocks, code background */
+    --bg-hover: #ECE4D8;           /* Hover states */
+
+    --text-primary: #2C2825;       /* Primary reading text */
+    --text-heading: #181513;       /* Heading text */
+    --text-muted: #766E64;         /* Secondary text, captions, metadata */
+    --text-disabled: #766E64;      /* WCAG AA 4.7:1 - disabled or inactive elements */
+
+    --accent: #A83824;             /* Accent color (links, highlight borders) */
+    --accent-hover: #C6452D;       /* Accent hover */
+    --accent-subtle: rgba(168, 56, 36, 0.08);
+
+    --border-color: #E6DFD5;       /* Dividers, card borders */
+    --border-subtle: #EFEAE2;      /* Hairlines, inner borders */
+
+    --code-bg: var(--bg-subtle);
+    --code-text: #2C2825;
+    --code-border: #E2D8CB;
+
+    --quote-bg: #F5EFE7;
+    --quote-text: #5A534B;
+    --quote-border: var(--accent);
+
+    --table-header-bg: var(--bg-surface);
+    --table-stripe-bg: #F8F5EF;
+
+    --selection-bg: rgba(168, 56, 36, 0.18);
+    --selection-text: inherit;
+
+    --kbd-bg: #F7F4EE;
+    --kbd-border: #DCD4C7;
+    --kbd-shadow: #CCC3B4;
+
+    --scrollbar-thumb: rgba(44, 40, 37, 0.2);
+    --scrollbar-thumb-hover: rgba(44, 40, 37, 0.35);
+    --scrollbar-thumb-active: rgba(44, 40, 37, 0.5);
+
+    /* Seer Chrome Token Aliases (declared at (0,2,0) to reliably override md_chrome.css) */
+    --seer-accent: var(--accent) !important;
+    --seer-sb-thumb: var(--scrollbar-thumb) !important;
+    --seer-sb-thumb-hover: var(--scrollbar-thumb-hover) !important;
+    --seer-sb-thumb-active: var(--scrollbar-thumb-active) !important;
+}
+
+/* --------------------------------------------------------------------------
+   1.4 DARK MODE PALETTE (Ink Stone / Warm Night)
+   Automatically toggled by Seer based on application dark mode.
+   -------------------------------------------------------------------------- */
+:root[data-darkmode="dark"] {
+    color-scheme: dark;
+
+    --bg-canvas: #1A1917;          /* Document backdrop */
+    --bg-surface: #22201D;         /* Cards, tables, elevated containers */
+    --bg-subtle: #24221F;          /* Code blocks, insets */
+    --bg-hover: #2D2B26;           /* Hover states */
+
+    --text-primary: #DCD6CD;       /* Primary reading text */
+    --text-heading: #F3EFEA;       /* Headings */
+    --text-muted: #958E83;         /* Secondary text */
+    --text-disabled: #958E83;      /* WCAG AA 5.4:1 */
+
+    --accent: #E0735E;             /* Warm terracotta accent */
+    --accent-hover: #E88977;
+    --accent-subtle: rgba(224, 115, 94, 0.12);
+
+    --border-color: #36332D;
+    --border-subtle: #2A2823;
+
+    --code-bg: var(--bg-subtle);
+    --code-text: #DCD6CD;
+    --code-border: #3A362F;
+
+    --quote-bg: #23211E;
+    --quote-text: #ABA499;
+    --quote-border: var(--accent);
+
+    --table-header-bg: var(--bg-surface);
+    --table-stripe-bg: #1F1D1B;
+
+    --selection-bg: rgba(224, 115, 94, 0.28);
+    --selection-text: inherit;
+
+    --kbd-bg: #24221F;
+    --kbd-border: #423E37;
+    --kbd-shadow: #141312;
+
+    --scrollbar-thumb: rgba(220, 214, 205, 0.2);
+    --scrollbar-thumb-hover: rgba(220, 214, 205, 0.35);
+    --scrollbar-thumb-active: rgba(220, 214, 205, 0.5);
+
+    /* Seer Chrome Token Aliases (dark overrides) */
+    --seer-accent: var(--accent) !important;
+    --seer-sb-thumb: var(--scrollbar-thumb) !important;
+    --seer-sb-thumb-hover: var(--scrollbar-thumb-hover) !important;
+    --seer-sb-thumb-active: var(--scrollbar-thumb-active) !important;
+}
+
+/* ==========================================================================
+   2. DOCUMENT ROOT & CONTAINER LAYOUT
+   ========================================================================== */
+
+html {
+    font-size: var(--font-size-root);
+    background-color: var(--bg-canvas);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-body);
+    letter-spacing: var(--letter-spacing-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    word-wrap: break-word;
+}
+
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}
+
+/* The primary markdown reading article rendered by Seer.
+   Seer always injects one of seer-reading-width-880 / -1200 / -full onto
+   <body>, and md_chrome.css pins max-width and the 24px side padding from
+   those classes at a higher specificity, so only the vertical rhythm belongs
+   to the theme. */
+#markdown-body.markdown-body {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding-top: var(--content-padding-y);
+    padding-bottom: var(--content-padding-y);
+}
+
+/* Remove excessive top margin on the first element */
+.markdown-body > :first-child {
+    margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY & HEADINGS
+   ========================================================================== */
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+    font-family: var(--font-heading);
+    color: var(--text-heading);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    margin-top: 1.8em;
+    margin-bottom: 0.6em;
+}
+
+.markdown-body h1 {
+    font-size: var(--font-size-h1);
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.35em;
+}
+
+.markdown-body h2 {
+    font-size: var(--font-size-h2);
+    letter-spacing: -0.015em;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 0.3em;
+}
+
+.markdown-body h3 {
+    font-size: var(--font-size-h3);
+}
+
+.markdown-body h4 {
+    font-size: var(--font-size-h4);
+}
+
+.markdown-body h5 {
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-semibold);
+}
+
+.markdown-body h6 {
+    font-size: var(--font-size-h6);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   4. INLINE ELEMENTS
+   ========================================================================== */
+
+.markdown-body p {
+    margin: 1.15em 0;
+}
+
+#markdown-body.markdown-body a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+#markdown-body.markdown-body a:hover {
+    color: var(--accent-hover);
+    text-decoration-thickness: 2px;
+}
+
+.markdown-body strong {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-heading);
+}
+
+.markdown-body em {
+    font-style: italic;
+}
+
+.markdown-body del {
+    color: var(--text-muted);
+}
+
+.markdown-body mark {
+    background-color: var(--accent-subtle);
+    color: var(--text-primary);
+    padding: 0.1em 0.3em;
+    border-radius: var(--radius-sm);
+}
+
+/* Keyboard badge <kbd> */
+.markdown-body kbd {
+    display: inline-block;
+    padding: 2px 6px;
+    font-family: var(--font-code);
+    font-size: var(--font-size-small);
+    line-height: 1.2;
+    color: var(--text-primary);
+    background-color: var(--kbd-bg);
+    border: 1px solid var(--kbd-border);
+    border-radius: var(--radius-sm);
+    box-shadow: inset 0 -1px 0 var(--kbd-shadow);
+    vertical-align: middle;
+}
+
+/* Accessible Focus Ring */
+.markdown-body a:focus-visible,
+.markdown-body button:focus-visible,
+.markdown-body input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   5. LISTS & TASK LISTS
+   ========================================================================== */
+
+.markdown-body ul,
+.markdown-body ol {
+    margin: 1.1em 0;
+    padding-left: 2em;
+}
+
+.markdown-body li {
+    margin: 0.4em 0;
+}
+
+.markdown-body li > p {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+    margin: 0.3em 0;
+}
+
+/* Task lists (standard block flow; avoids flex on li so nested lists preserve indentation) */
+.markdown-body .contains-task-list {
+    list-style-type: none;
+    padding-left: 0.2em;
+}
+
+.markdown-body .task-list-item {
+    list-style-type: none;
+    margin: 0.35em 0;
+}
+
+.markdown-body .task-list-item input[type="checkbox"] {
+    margin: 0 0.5em 0.2em 0;
+    vertical-align: middle;
+    accent-color: var(--accent);
+}
+
+.markdown-body .task-list-item input[type="checkbox"]:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.markdown-body [disabled],
+.markdown-body .is-disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   6. BLOCKQUOTES & EPIGRAPHS
+   ========================================================================== */
+
+.markdown-body blockquote {
+    margin: 1.8em 0;
+    padding: 12px 20px;
+    background-color: var(--quote-bg);
+    border-left: 3px solid var(--quote-border);
+    color: var(--quote-text);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: var(--font-style-quote);
+}
+
+.markdown-body blockquote p:first-child {
+    margin-top: 0;
+}
+
+.markdown-body blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-body blockquote blockquote {
+    margin: 0.8em 0;
+    background-color: transparent;
+    border-left: 2px solid var(--border-subtle);
+}
+
+/* ==========================================================================
+   7. CODE & SYNTAX BLOCKS
+   ========================================================================== */
+
+/* Inline code */
+.markdown-body code {
+    font-family: var(--font-code);
+    font-size: var(--font-size-code);
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
+    border-radius: var(--radius-sm);
+    padding: 0.15em 0.4em;
+    word-break: break-word;
+}
+
+/* Fenced code blocks */
+.markdown-body pre {
+    margin: 1.6em 0;
+    padding: 16px 20px;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    line-height: var(--line-height-code);
+}
+
+.markdown-body pre code {
+    background-color: transparent;
+    color: var(--code-text);
+    border: none;
+    padding: 0;
+    font-size: var(--font-size-code);
+    font-family: var(--font-code);
+    white-space: pre;
+    word-break: normal;
+}
+
+/* Seer Native Code Block & Copy Button Integration
+   Seer automatically wraps <pre> in .seer-code-block and injects .copy-code-btn. */
+.seer-code-block {
+    position: relative;
+    margin: 1.6em 0;
+}
+
+.seer-code-block pre {
+    margin: 0;
+}
+
+.copy-code-btn {
+    border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   8. TABLES
+   ========================================================================== */
+
+.markdown-body table {
+    width: max-content;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: 1.8em 0;
+    font-size: 0.95em;
+    overflow-x: auto;
+    display: block;
+}
+
+.markdown-body th,
+.markdown-body td {
+    padding: 10px 14px;
+    border: 1px solid var(--border-subtle);
+    text-align: left;
+}
+
+.markdown-body th {
+    background-color: var(--table-header-bg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-heading);
+}
+
+.markdown-body tr:nth-child(even) td {
+    background-color: var(--table-stripe-bg);
+}
+
+.markdown-body tr:hover td {
+    background-color: var(--bg-hover);
+}
+
+/* ==========================================================================
+   9. HORIZONTAL RULES & MEDIA
+   ========================================================================== */
+
+.markdown-body hr {
+    height: 1px;
+    background-color: var(--border-color);
+    border: none;
+    margin: 2.8em auto;
+    width: 75%;
+}
+
+.markdown-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    vertical-align: middle;
+}
+
+/* Center standalone images inside paragraphs and figures */
+.markdown-body p > img:only-child,
+.markdown-body figure img {
+    display: block;
+    margin: 1.6em auto;
+    border-radius: var(--radius-lg);
+}
+
+.markdown-body figure {
+    margin: 1.8em 0;
+    text-align: center;
+}
+
+.markdown-body figcaption {
+    font-size: var(--font-size-small);
+    font-style: var(--font-style-caption);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-muted);
+    margin-top: 0.6em;
+}
+
+/* ==========================================================================
+   10. SCROLLBARS (For the preview window)
+   ========================================================================== */
+
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb) !important;
+    border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover) !important;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--scrollbar-thumb-active) !important;
+}
+
+/* ==========================================================================
+   11. PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    /* Force high-contrast light print palette regardless of active dark mode */
+    :root,
+    :root[data-darkmode="light"],
+    :root[data-darkmode="dark"] {
+        color-scheme: light !important;
+        --bg-canvas: #FFFFFF !important;
+        --bg-surface: #FFFFFF !important;
+        --bg-subtle: #F6F6F6 !important;
+        --text-primary: #000000 !important;
+        --text-heading: #000000 !important;
+        --text-muted: #444444 !important;
+        --code-bg: #F5F5F5 !important;
+        --code-text: #000000 !important;
+        --code-border: #E0E0E0 !important;
+        --quote-bg: transparent !important;
+        --quote-text: #333333 !important;
+        --quote-border: #888888 !important;
+        --table-header-bg: #EEEEEE !important;
+        --table-stripe-bg: #FAFAFA !important;
+        --border-color: #CCCCCC !important;
+        --border-subtle: #DDDDDD !important;
+        --accent: #000000 !important;
+        --kbd-bg: #FFFFFF !important;
+        --kbd-border: #CCCCCC !important;
+        --kbd-shadow: transparent !important;
+    }
+
+    /* 10.5pt is the rem base, not the body size: the article body runs at
+       --font-size-base (1.0625rem), roughly 11.2pt on paper. */
+    html, body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        font-size: 10.5pt !important;
+    }
+
+    #markdown-body.markdown-body {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4,
+    .markdown-body h5,
+    .markdown-body h6,
+    .markdown-body strong,
+    .markdown-body th {
+        color: #000000 !important;
+    }
+
+    .markdown-body kbd {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+        border: 1px solid #CCCCCC !important;
+        box-shadow: none !important;
+    }
+
+    .markdown-body a {
+        text-decoration: underline !important;
+        color: #000000 !important;
+    }
+
+    .markdown-body pre,
+    .markdown-body blockquote,
+    .markdown-body table,
+    .markdown-body tr,
+    .markdown-body img {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
