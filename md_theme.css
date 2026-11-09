@@ -22,9 +22,45 @@ body a:visited {
     color: var(--md-theme-accent) !important;
 }
 
+/* The base sheets colour emphasis and table headers from their own palette:
+   bold is navy in light mode and orange in dark mode, italic and header text
+   are navy in both. Every themed document would show that hue instead of its
+   own, so emphasis keeps the running text colour and lets weight and slant
+   carry the meaning. */
+body b,
+body strong,
+body em {
+    color: inherit !important;
+}
+
+body th {
+    color: var(--md-theme-heading) !important;
+}
+
 body hr {
     background-color: var(--md-theme-border) !important;
     border-color: var(--md-theme-border) !important;
+}
+
+/* The base sheets paint hr, blockquote, thead and alerts with fixed blue-grey
+   gradient images. Those images sit above background-color, so a colour
+   override alone leaves the theme surface hidden underneath. */
+body hr,
+body blockquote,
+body thead {
+    background-image: none !important;
+}
+
+/* The base sheets paint every alert with the same hard-coded blue gradient
+   and blue text. Use the theme surface and body text instead: it matches
+   md_paperwhite.css and stays identical in the preview and in a single-file
+   HTML export, which inlines no linked sheets. Per-type severity still comes
+   from md_alert.css borders and icons, not from the background. One class of
+   specificity keeps md_paperwhite.css's body .markdown-alert rule winning. */
+.markdown-alert {
+    background-color: var(--md-theme-quote-bg) !important;
+    background-image: none !important;
+    color: var(--md-theme-text) !important;
 }
 
 body blockquote {
@@ -53,6 +89,12 @@ body table tr {
     background-color: var(--md-theme-bg) !important;
 }
 
+/* Two render paths share this rule. In the preview md_chrome.css is linked
+   after this sheet and its .seer-table-zebra rules (higher specificity and
+   !important) own even rows, so the nth-child selector is inert there and only
+   body table th applies. A single-file HTML export inlines only <style> and
+   carries no linked sheets, so this nth-child selector is the sole rule
+   colouring even rows -- removing it drops the zebra striping from exports. */
 body table tr:nth-child(2n),
 body table th {
     background-color: var(--md-theme-quote-bg) !important;
@@ -61,4 +103,17 @@ body table th {
 body mark {
     background-color: var(--md-theme-quote-bg) !important;
     color: var(--md-theme-text) !important;
+}
+
+/* Several themes put quote-bg within a few RGB steps of the page in light
+   mode (nordic 6.0, evergreen 7.5), so highlighted text disappears. code-bg
+   carries the same "different surface" meaning and stays visible there; in
+   dark mode quote-bg is the stronger of the two. */
+html[data-darkmode="light"] body mark {
+    background-color: var(--md-theme-code-bg) !important;
+}
+
+body::selection {
+    color: var(--md-theme-text) !important;
+    background-color: color-mix(in srgb, var(--md-theme-accent) 25%, transparent) !important;
 }

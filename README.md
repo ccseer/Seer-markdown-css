@@ -146,9 +146,18 @@ and Indic scripts, and serves as an ideal reference or starting point.
 ## Built-in Styles
 
 `md_github.css` and `md_night.css` are complete GitHub-derived document
-stylesheets. `md_theme.css` contains the common Seer theme tokens, while the
-small `md_*.css` files add the bundled named-theme overrides. They are useful
+stylesheets. `md_theme.css` contains the common Seer theme tokens plus the
+`!important` structural overrides that map them onto `hr`, `blockquote`,
+`thead`, `mark`, `::selection`, tables and alert blocks, while the small
+`md_*.css` files add the bundled named-theme overrides. They are useful
 references when creating a new stylesheet.
+
+`md_alert.css` is the helper sheet for the five GitHub-style alert blocks
+(surfaces, borders and icons); both bundled Markdown preview templates link it.
+
+Single-file HTML exports inline only the injected `<style>`. Helper sheets
+loaded via `<link>` (`md_chrome.css`, `md_alert.css`) are not carried over, so
+rules that live only there do not apply to an exported document.
 
 `md_paperwhite.css` is the one named theme that is not a plain token sheet. The
 base stylesheets hard-code their own bold and italic colours, gradient washes,
@@ -159,7 +168,7 @@ alert types.
 The bundled named-theme files (nine of them, such as `md_obsidian.css`,
 `md_sahara.css`, and `md_paperwhite.css`) are color overlays designed to sit
 on top of `md_github.css` or `md_night.css`, while `md_theme.css` acts as the
-shared token definition layer. None of these is a standalone document
+shared token and override layer. None of these is a standalone document
 stylesheet: pointing **Custom CSS path** at any one of them provides theme
 tokens and scoped colour overrides, but no base typography or container layout,
 because Seer skips its base document stylesheet in Custom mode (while still

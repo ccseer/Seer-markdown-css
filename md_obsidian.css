@@ -2,12 +2,12 @@
     --md-theme-bg: #f5f6f8;
     --md-theme-text: #263238;
     --md-theme-heading: #263238;
-    --md-theme-accent: #607d8b;
+    --md-theme-accent: #556e7a;
     --md-theme-border: #d7dce3;
     --md-theme-code-bg: #e9edf2;
     --md-theme-code-text: #37474f;
     --md-theme-quote-bg: #edf1f5;
-    --md-theme-quote-border: #607d8b;
+    --md-theme-quote-border: #556e7a;
 }
 
 :root[data-darkmode="dark"] {

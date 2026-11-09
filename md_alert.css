@@ -1,0 +1,114 @@
+.markdown-alert {
+    position: relative;
+    margin: 16px 0;
+    padding: 12px 16px 12px 52px;
+    color: var(--markdown-alert-text);
+    background-color: var(--markdown-alert-bg);
+    border: 1px solid var(--markdown-alert-border);
+    border-radius: 4px;
+}
+
+body .markdown-alert {
+    margin: 16px 0;
+    padding: 12px 16px 12px 52px;
+    color: var(--markdown-alert-text);
+    border: 1px solid var(--markdown-alert-border);
+}
+
+.markdown-alert-icon {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    width: 20px;
+    height: 20px;
+    color: var(--markdown-alert-icon);
+}
+
+.markdown-alert-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.2;
+}
+
+.markdown-alert-content > :first-child {
+    margin-top: 0;
+}
+
+.markdown-alert-content > :last-child {
+    margin-bottom: 0;
+}
+
+html[data-darkmode="light"] .markdown-alert-note {
+    --markdown-alert-bg: #eef6fc;
+    --markdown-alert-border: #c9e6f7;
+    --markdown-alert-text: #24292f;
+    --markdown-alert-icon: #0969da;
+}
+
+html[data-darkmode="light"] .markdown-alert-tip {
+    --markdown-alert-bg: #edf7ee;
+    --markdown-alert-border: #c8e8cc;
+    --markdown-alert-text: #24292f;
+    --markdown-alert-icon: #1a7f37;
+}
+
+html[data-darkmode="light"] .markdown-alert-important {
+    --markdown-alert-bg: #f7f0ff;
+    --markdown-alert-border: #e2d4f7;
+    --markdown-alert-text: #24292f;
+    --markdown-alert-icon: #8250df;
+}
+
+html[data-darkmode="light"] .markdown-alert-warning {
+    --markdown-alert-bg: #fff8e6;
+    --markdown-alert-border: #f5e0a3;
+    --markdown-alert-text: #24292f;
+    --markdown-alert-icon: #9a6700;
+}
+
+html[data-darkmode="light"] .markdown-alert-caution {
+    --markdown-alert-bg: #fff0f0;
+    --markdown-alert-border: #f5cccc;
+    --markdown-alert-text: #24292f;
+    --markdown-alert-icon: #cf222e;
+}
+
+html[data-darkmode="dark"] .markdown-alert-note {
+    --markdown-alert-bg: #112b3c;
+    --markdown-alert-border: #1a5272;
+    --markdown-alert-text: #e6edf3;
+    --markdown-alert-icon: #58a6ff;
+}
+
+html[data-darkmode="dark"] .markdown-alert-tip {
+    --markdown-alert-bg: #122a1a;
+    --markdown-alert-border: #2b6237;
+    --markdown-alert-text: #e6edf3;
+    --markdown-alert-icon: #56d364;
+}
+
+html[data-darkmode="dark"] .markdown-alert-important {
+    --markdown-alert-bg: #281b3c;
+    --markdown-alert-border: #5c3c90;
+    --markdown-alert-text: #e6edf3;
+    --markdown-alert-icon: #d2a8ff;
+}
+
+html[data-darkmode="dark"] .markdown-alert-warning {
+    --markdown-alert-bg: #332a14;
+    --markdown-alert-border: #735c1d;
+    --markdown-alert-text: #e6edf3;
+    --markdown-alert-icon: #e3b341;
+}
+
+html[data-darkmode="dark"] .markdown-alert-caution {
+    --markdown-alert-bg: #351b1d;
+    --markdown-alert-border: #7a3037;
+    --markdown-alert-text: #e6edf3;
+    --markdown-alert-icon: #ff7b72;
+}
