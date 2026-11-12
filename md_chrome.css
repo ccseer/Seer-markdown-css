@@ -248,13 +248,14 @@ pre:focus-within .copy-code-btn,
 .seer-code-block:has(.mermaid-block),
 .mermaid-block {
     position: relative;
-    margin: 1em 0;
+    margin: 1.5em 0;
     overflow-x: auto;
     opacity: 0;
     transition: opacity 0.3s ease;
     padding-top: 0 !important;
     border: none !important;
     border-radius: 0 !important;
+    text-align: center;
 }
 .seer-code-block:has(.mermaid-block)::before,
 .seer-code-block:has(.mermaid-block)::after,
@@ -269,9 +270,13 @@ pre:focus-within .copy-code-btn,
 }
 
 .mermaid-block svg {
-    display: block;
+    display: inline-block;
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
 }
 
 .mermaid-block.error {
@@ -284,6 +289,7 @@ pre:focus-within .copy-code-btn,
     border-radius: 4px;
     color: var(--seer-text-primary);
     font-size: 0.9em;
+    text-align: left;
 }
 
 
@@ -409,6 +415,11 @@ body.seer-code-frame-win pre:not(.seer-code-block pre):not(.mermaid-block) .copy
 
 
 /* Code Line Numbers */
+/* The extra class outranks body.seer-code-wrap .seer-line-num, which also
+   forces display with !important and appears later in this sheet. */
+body:not(.seer-code-lines) .seer-code-line > .seer-line-num {
+    display: none !important;
+}
 body.seer-code-lines pre code {
     display: block;
 }
