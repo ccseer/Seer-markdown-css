@@ -58,12 +58,13 @@ them from a custom stylesheet when you need to restyle Seer's own chrome.
 | `.seer-code-block` | Wrapper around every fenced code block |
 | `.seer-code-line`, `.seer-line-num` | A code line and its number cell |
 | `.copy-code-btn` | Copy button injected into code blocks and diagrams |
-| `.seer-heading-toggle`, `.seer-collapsed-content` | Collapsible headings |
+| `.seer-heading-toggle`, `.seer-collapsed-content`, `.seer-expanding-content` | Collapsible headings and reveal animation |
 | `.mermaid-block` | Host for a rendered Mermaid diagram |
 | `.markdown-alert` + `.markdown-alert-{note,tip,important,warning,caution}` | `> [!NOTE]` style callouts |
 | `#toc-container`, `#toc-title`, `#toc-content` | Table of contents panel |
+| `.seer-inline-toc`, `.seer-inline-toc-title` | Inline `[TOC]` block rendered inside `#markdown-body` |
 | `#seer-lightbox` (+ `.visible`) | Image lightbox, created on first click |
-| `#seer-link-tooltip` (+ `.visible`) | Hover tooltip for external links |
+| `#seer-link-tooltip` (+ `.visible`, `.seer-tooltip-text`) | Multi-line hover tooltip for links and images |
 | `.seer-target-active` | Target of an in-page anchor, alongside `:target` |
 
 ## Minimal Theme

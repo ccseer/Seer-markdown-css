@@ -1,7 +1,7 @@
 /* Seer Semantic Theme Tokens.
    Every Seer template writes data-darkmode on <html> before the document is
-   handed to the engine (preview, HeTi template, single-file export), so the
-   tokens need no unattributed fallback block. */
+   handed to the engine (preview, single-file export), so the tokens need no
+   unattributed fallback block. */
 :root[data-darkmode="light"] {
     --seer-accent: var(--md-theme-accent, #016BA5);
     --seer-text-primary: var(--md-theme-text, var(--seer-text, #212121));
@@ -29,8 +29,7 @@
 }
 
 /* Document Body Links Override */
-.markdown-body a,
-.heti a {
+.markdown-body a {
     color: var(--seer-accent);
 }
 
@@ -244,6 +243,57 @@ pre:focus-within .copy-code-btn,
     border-left-color: var(--seer-accent);
 }
 
+/* Inline [TOC] placeholder */
+#markdown-body .seer-inline-toc {
+    margin: 16px 0 24px;
+    padding: 14px 18px;
+    border: 1px solid var(--seer-separator);
+    border-left: 3px solid var(--seer-accent);
+    border-radius: 6px;
+    background: var(--seer-hover-wash);
+}
+
+#markdown-body .seer-inline-toc-title {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--seer-text-primary);
+}
+
+#markdown-body .seer-inline-toc ul,
+#markdown-body .seer-inline-toc ul ul,
+#markdown-body .seer-inline-toc ul ul ul {
+    margin: 0;
+    padding-left: 18px;
+    list-style: none;
+    list-style-type: none;
+}
+
+#markdown-body .seer-inline-toc > ul {
+    padding-left: 0;
+}
+
+#markdown-body .seer-inline-toc li {
+    margin: 3px 0;
+    line-height: 1.5;
+    list-style: none;
+    list-style-type: none;
+}
+
+#markdown-body .seer-inline-toc a,
+#markdown-body .seer-inline-toc a:visited {
+    color: var(--seer-text-secondary);
+    text-decoration: none;
+    border-bottom: none;
+}
+
+#markdown-body .seer-inline-toc a:hover {
+    color: var(--seer-accent);
+    text-decoration: underline;
+    border-bottom: none;
+}
+
 /* Mermaid Blocks */
 .seer-code-block:has(.mermaid-block),
 .mermaid-block {
@@ -298,10 +348,7 @@ pre:focus-within .copy-code-btn,
    ========================================================================== */
 
 /* Reading Width: 880px (Standard), 1200px (Wide), full (Full) */
-body.seer-reading-width-880 #markdown-body,
-body.seer-reading-width-880 .container,
-body.seer-reading-width-880 article.markdown-body,
-body.seer-reading-width-880 article.heti {
+body.seer-reading-width-880 #markdown-body {
     max-width: 880px !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -310,10 +357,7 @@ body.seer-reading-width-880 article.heti {
     box-sizing: border-box;
 }
 
-body.seer-reading-width-1200 #markdown-body,
-body.seer-reading-width-1200 .container,
-body.seer-reading-width-1200 article.markdown-body,
-body.seer-reading-width-1200 article.heti {
+body.seer-reading-width-1200 #markdown-body {
     max-width: 1200px !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -322,10 +366,7 @@ body.seer-reading-width-1200 article.heti {
     box-sizing: border-box;
 }
 
-body.seer-reading-width-full #markdown-body,
-body.seer-reading-width-full .container,
-body.seer-reading-width-full article.markdown-body,
-body.seer-reading-width-full article.heti {
+body.seer-reading-width-full #markdown-body {
     max-width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -481,21 +522,18 @@ body:not(.seer-code-wrap) pre {
    so hovered rows are excluded from both variants below. */
 body.seer-table-zebra table tbody tr:nth-child(even):not(:hover),
 body.seer-table-zebra table tr:nth-child(2n):not(:hover),
-body.seer-table-zebra .markdown-body table tbody tr:nth-child(even):not(:hover),
-body.seer-table-zebra .heti table tbody tr:nth-child(even):not(:hover) {
+body.seer-table-zebra .markdown-body table tbody tr:nth-child(even):not(:hover) {
     background-color: var(--seer-hover-wash, rgba(128, 128, 128, 0.05)) !important;
 }
 
 body:not(.seer-table-zebra) table tbody tr:nth-child(even):not(:hover),
 body:not(.seer-table-zebra) table tr:nth-child(2n):not(:hover),
-body:not(.seer-table-zebra) .markdown-body table tbody tr:nth-child(even):not(:hover),
-body:not(.seer-table-zebra) .heti table tbody tr:nth-child(even):not(:hover) {
+body:not(.seer-table-zebra) .markdown-body table tbody tr:nth-child(even):not(:hover) {
     background-color: transparent !important;
 }
 
 table tbody tr:hover,
-.markdown-body table tbody tr:hover,
-.heti table tbody tr:hover {
+.markdown-body table tbody tr:hover {
     background-color: color-mix(in srgb, var(--seer-text-primary) 8%, transparent) !important;
 }
 
@@ -540,9 +578,7 @@ html.seer-scrolling {
 
 /* External Link Icon */
 .markdown-body a[href^="http://"]:not(:has(img))::after,
-.markdown-body a[href^="https://"]:not(:has(img))::after,
-.heti a[href^="http://"]:not(:has(img))::after,
-.heti a[href^="https://"]:not(:has(img))::after {
+.markdown-body a[href^="https://"]:not(:has(img))::after {
     content: "";
     display: inline-block;
     width: 11px;
@@ -561,33 +597,26 @@ html.seer-scrolling {
     transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .markdown-body a[href^="http://"]:not(:has(img)):hover::after,
-.markdown-body a[href^="https://"]:not(:has(img)):hover::after,
-.heti a[href^="http://"]:not(:has(img)):hover::after,
-.heti a[href^="https://"]:not(:has(img)):hover::after {
+.markdown-body a[href^="https://"]:not(:has(img)):hover::after {
     opacity: 1;
     transform: translate(1px, -1px);
 }
 
 /* Task Lists */
 .markdown-body li:has(> input[type="checkbox"]),
-.heti li:has(> input[type="checkbox"]),
-.markdown-body .task-list-item,
-.heti .task-list-item {
+.markdown-body .task-list-item {
     list-style: none !important;
     list-style-type: none !important;
     position: relative;
     padding-left: 0;
 }
 .markdown-body ul:has(> li > input[type="checkbox"]),
-.heti ul:has(> li > input[type="checkbox"]),
-.markdown-body ul.contains-task-list,
-.heti ul.contains-task-list {
+.markdown-body ul.contains-task-list {
     list-style: none !important;
     list-style-type: none !important;
     padding-left: 0.5em;
 }
-.markdown-body input[type="checkbox"],
-.heti input[type="checkbox"] {
+.markdown-body input[type="checkbox"] {
     accent-color: var(--seer-accent);
     cursor: default;
     width: 14px;
@@ -596,21 +625,18 @@ html.seer-scrolling {
     margin-right: 6px;
     margin-top: -2px;
 }
-.markdown-body li:has(> input[type="checkbox"]:checked),
-.heti li:has(> input[type="checkbox"]:checked) {
+.markdown-body li:has(> input[type="checkbox"]:checked) {
     opacity: 0.55;
     text-decoration: line-through;
     transition: opacity 0.2s ease;
 }
-.markdown-body li:has(> input[type="checkbox"]:checked):hover,
-.heti li:has(> input[type="checkbox"]:checked):hover {
+.markdown-body li:has(> input[type="checkbox"]:checked):hover {
     opacity: 0.85;
 }
 
 
 /* Collapsible Headings */
-.markdown-body h1, .markdown-body h2, .markdown-body h3,
-.heti h1, .heti h2, .heti h3 {
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
     position: relative;
 }
 .seer-heading-toggle {
@@ -662,6 +688,24 @@ h3:hover .seer-heading-toggle {
 }
 .seer-collapsed-content {
     display: none !important;
+}
+@keyframes seerHeadingExpand {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.seer-expanding-content {
+    animation: seerHeadingExpand 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+    .seer-expanding-content {
+        animation: none;
+    }
 }
 
 /* Image Lightbox */
@@ -718,22 +762,20 @@ h3:hover .seer-heading-toggle {
     background: rgba(255, 255, 255, 0.3);
 }
 
-.markdown-body img:not(.emoji),
-.heti img:not(.emoji) {
+.markdown-body img:not(.emoji) {
     cursor: zoom-in;
 }
-.markdown-body a img:not(.emoji),
-.heti a img:not(.emoji) {
+.markdown-body a img:not(.emoji) {
     cursor: pointer !important;
 }
 
-/* Link Destination Tooltip */
+/* Link and Image Destination Tooltip */
 #seer-link-tooltip {
     position: fixed;
     z-index: 10001;
-    padding: 5px 9px;
+    padding: 6px 10px;
     font-size: 11px;
-    line-height: 1.4;
+    line-height: 1.45;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     color: var(--seer-text-primary);
     background: var(--seer-bg-base);
@@ -743,13 +785,19 @@ h3:hover .seer-heading-toggle {
     border-radius: 6px;
     box-shadow: var(--seer-shadow);
     pointer-events: none;
-    white-space: nowrap;
-    max-width: 420px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: min(460px, calc(100vw - 24px));
     opacity: 0;
     transform: translateY(4px);
     transition: opacity 0.12s ease, transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#seer-link-tooltip .seer-tooltip-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 #seer-link-tooltip.visible {
     opacity: 1;
@@ -761,8 +809,7 @@ h3:hover .seer-heading-toggle {
     #seer-lightbox,
     .copy-code-btn,
     #seer-link-tooltip,
-    .markdown-body a::after,
-    .heti a::after {
+    .markdown-body a::after {
         display: none !important;
     }
     /* Collapsed sections print expanded. revert restores each element's own
@@ -770,18 +817,12 @@ h3:hover .seer-heading-toggle {
     .seer-collapsed-content {
         display: revert !important;
     }
+    .seer-expanding-content {
+        animation: none !important;
+    }
     body.seer-reading-width-880 #markdown-body,
     body.seer-reading-width-1200 #markdown-body,
-    body.seer-reading-width-full #markdown-body,
-    body.seer-reading-width-880 article.markdown-body,
-    body.seer-reading-width-1200 article.markdown-body,
-    body.seer-reading-width-full article.markdown-body,
-    body.seer-reading-width-880 article.heti,
-    body.seer-reading-width-1200 article.heti,
-    body.seer-reading-width-full article.heti,
-    body.seer-reading-width-880 .container,
-    body.seer-reading-width-1200 .container,
-    body.seer-reading-width-full .container {
+    body.seer-reading-width-full #markdown-body {
         max-width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;

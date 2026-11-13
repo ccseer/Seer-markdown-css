@@ -79,6 +79,16 @@ body pre {
     border-color: var(--md-theme-border) !important;
 }
 
+body kbd {
+    background-color: color-mix(in srgb, var(--md-theme-quote-bg) 92%, var(--md-theme-text) 8%) !important;
+    color: var(--md-theme-text) !important;
+    border-color: color-mix(in srgb, var(--md-theme-border) 78%, var(--md-theme-text) 22%) !important;
+    border-bottom-width: 2px !important;
+    border-bottom-color: color-mix(in srgb, var(--md-theme-border) 55%, var(--md-theme-text) 45%) !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+}
+
 body table tr,
 body table td,
 body table th {

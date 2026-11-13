@@ -102,13 +102,6 @@ body table {
     background: var(--md-theme-bg);
 }
 
-body kbd {
-    color: var(--md-theme-text);
-    background-color: var(--md-theme-quote-bg);
-    border-color: var(--md-theme-border);
-    box-shadow: none;
-}
-
 /* Alerts drop to one surface for all five types. Severity then rides on the
    lightness of the rule at the left edge and on the icon, which already has a
    distinct SVG shape per type, so nothing depends on hue. */
