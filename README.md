@@ -65,6 +65,7 @@ them from a custom stylesheet when you need to restyle Seer's own chrome.
 | `.seer-inline-toc`, `.seer-inline-toc-title` | Inline `[TOC]` block rendered inside `#markdown-body` |
 | `#seer-lightbox` (+ `.visible`) | Image lightbox, created on first click |
 | `#seer-link-tooltip` (+ `.visible`, `.seer-tooltip-text`) | Multi-line hover tooltip for links and images |
+| `#__seer_export_watermark` | Watermark footer injected for single-image PNG export (`!important` overrides its inline defaults; Card and Split-ZIP footers read `body` background, `--seer-text-secondary`, and `--seer-separator`) |
 | `.seer-target-active` | Target of an in-page anchor, alongside `:target` |
 
 ## Minimal Theme

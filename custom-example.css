@@ -139,7 +139,12 @@
     --scrollbar-thumb-hover: rgba(44, 40, 37, 0.35);
     --scrollbar-thumb-active: rgba(44, 40, 37, 0.5);
 
-    /* Seer Chrome Token Aliases (declared at (0,2,0) to reliably override md_chrome.css) */
+    /* Seer Chrome Token Aliases
+       Declared at (0,2,0) to align md_chrome.css (TOC, inline [TOC], tooltips,
+       line numbers, zebra wash, Mermaid border) with the custom palette. */
+    --seer-text: var(--text-primary);
+    --seer-window-bg: var(--bg-canvas);
+    --seer-border: var(--border-color);
     --seer-accent: var(--accent) !important;
     --seer-sb-thumb: var(--scrollbar-thumb) !important;
     --seer-sb-thumb-hover: var(--scrollbar-thumb-hover) !important;
@@ -193,6 +198,9 @@
     --scrollbar-thumb-active: rgba(220, 214, 205, 0.5);
 
     /* Seer Chrome Token Aliases (dark overrides) */
+    --seer-text: var(--text-primary);
+    --seer-window-bg: var(--bg-canvas);
+    --seer-border: var(--border-color);
     --seer-accent: var(--accent) !important;
     --seer-sb-thumb: var(--scrollbar-thumb) !important;
     --seer-sb-thumb-hover: var(--scrollbar-thumb-hover) !important;
@@ -339,18 +347,40 @@ body {
     border-radius: var(--radius-sm);
 }
 
-/* Keyboard badge <kbd> */
+/* Subscript / Superscript (avoid distorting line height on tall body leading) */
+.markdown-body sub,
+.markdown-body sup {
+    font-size: 0.75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.markdown-body sup {
+    top: -0.45em;
+}
+
+.markdown-body sub {
+    bottom: -0.25em;
+}
+
+/* Keyboard badge <kbd> (UI sans + 2px bottom lip to distinguish from inline <code>) */
 .markdown-body kbd {
     display: inline-block;
+    min-width: 1.5em;
+    text-align: center;
     padding: 2px 6px;
-    font-family: var(--font-code);
-    font-size: var(--font-size-small);
-    line-height: 1.2;
+    font-family: var(--font-sans);
+    font-size: 0.78em;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.25;
     color: var(--text-primary);
     background-color: var(--kbd-bg);
     border: 1px solid var(--kbd-border);
+    border-bottom-width: 2px;
+    border-bottom-color: var(--kbd-shadow);
     border-radius: var(--radius-sm);
-    box-shadow: inset 0 -1px 0 var(--kbd-shadow);
+    box-shadow: none;
     vertical-align: middle;
 }
 
@@ -444,6 +474,13 @@ body {
     border-left: 2px solid var(--border-subtle);
 }
 
+/* GitHub Alerts (> [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION])
+   md_alert.css defines light/dark --markdown-alert-{bg,border,text,icon} tokens.
+   Keep spacing and radius aligned with the theme; override those tokens per type if needed. */
+.markdown-body .markdown-alert {
+    border-radius: var(--radius-md);
+}
+
 /* ==========================================================================
    7. CODE & SYNTAX BLOCKS
    ========================================================================== */
@@ -482,8 +519,9 @@ body {
     word-break: normal;
 }
 
-/* Seer Native Code Block & Copy Button Integration
-   Seer automatically wraps <pre> in .seer-code-block and injects .copy-code-btn. */
+/* Seer Native Code Block, Line Numbers, Window Frames & Copy Button Integration
+   Seer wraps <pre> in .seer-code-block and toggles body.seer-code-lines /
+   body.seer-code-wrap / body.seer-code-frame-{mac,win} from md_chrome.css. */
 .seer-code-block {
     position: relative;
     margin: 1.6em 0;
@@ -524,11 +562,13 @@ body {
     color: var(--text-heading);
 }
 
-.markdown-body tr:nth-child(even) td {
+/* Paint stripes/hover on <tr> (never <td>) so Seer's Zebra Stripes toggle
+   (body.seer-table-zebra / body:not(.seer-table-zebra)) can switch stripes off cleanly. */
+body.seer-table-zebra .markdown-body tbody tr:nth-child(even):not(:hover) {
     background-color: var(--table-stripe-bg);
 }
 
-.markdown-body tr:hover td {
+.markdown-body tbody tr:hover {
     background-color: var(--bg-hover);
 }
 
@@ -544,7 +584,7 @@ body {
     width: 75%;
 }
 
-.markdown-body img {
+.markdown-body img:not(.emoji) {
     max-width: 100%;
     height: auto;
     border-radius: var(--radius-md);
@@ -552,11 +592,18 @@ body {
 }
 
 /* Center standalone images inside paragraphs and figures */
-.markdown-body p > img:only-child,
-.markdown-body figure img {
+.markdown-body p > img:only-child:not(.emoji),
+.markdown-body figure img:not(.emoji) {
     display: block;
     margin: 1.6em auto;
     border-radius: var(--radius-lg);
+}
+
+/* Keep wide display math equations ($$...$$) scrollable inside narrow widths */
+.markdown-body .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.35em 0;
 }
 
 .markdown-body figure {
@@ -573,7 +620,32 @@ body {
 }
 
 /* ==========================================================================
-   10. SCROLLBARS (For the preview window)
+   10. SEER CHROME & IMAGE EXPORT WATERMARK HOOKS
+   ========================================================================== */
+
+/* Inline [TOC] card (.seer-inline-toc), floating #toc-container, heading toggles
+   (.seer-heading-toggle), and link/image #seer-link-tooltip pull their palette
+   from Section 1's --seer-* tokens automatically. */
+#markdown-body .seer-inline-toc {
+    border-radius: var(--radius-md);
+}
+
+/* Export Image Watermark Footer (#__seer_export_watermark)
+   - Single-image PNG export injects <footer id="__seer_export_watermark"> with
+     inline CSS that reads --seer-separator and --seer-text-secondary. Override
+     those properties with !important below if you want a custom footer font,
+     spacing, alignment, or color.
+   - Split-ZIP and Card-Mode PNG exports paint the watermark natively using
+     body background, --seer-text-secondary, and --seer-separator. */
+#__seer_export_watermark {
+    font-family: var(--font-sans) !important;
+    color: var(--text-muted) !important;
+    border-top-color: var(--border-color) !important;
+    letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   11. SCROLLBARS (For the preview window)
    ========================================================================== */
 
 ::-webkit-scrollbar {
@@ -599,7 +671,7 @@ body {
 }
 
 /* ==========================================================================
-   11. PRINT STYLES
+   12. PRINT STYLES
    ========================================================================== */
 
 @media print {
@@ -658,7 +730,13 @@ body {
         background-color: #FFFFFF !important;
         color: #000000 !important;
         border: 1px solid #CCCCCC !important;
+        border-bottom-width: 1px !important;
         box-shadow: none !important;
+    }
+
+    .markdown-body mark {
+        background-color: #EEEEEE !important;
+        color: #000000 !important;
     }
 
     .markdown-body a {
